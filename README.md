@@ -1,73 +1,48 @@
-# Welcome to your Lovable project
+# JTL-ArtikelAnlegen
 
-## Project info
+An AI-assisted tool for creating and enriching clothing/apparel product master data for [JTL](https://www.jtl-software.com/). It combines a spreadsheet-style editor with AI-powered classification, translation, and text-generation features to speed up building JTL-ready Artikelstammdaten.
 
-**URL**: https://lovable.dev/projects/REPLACE_WITH_PROJECT_ID
+## Features
 
-## How can I edit this code?
+- **Spreadsheet editor** — enter and edit product rows (name, code, color, size, EAN, HAN, prices, quantity) with paste, undo, find & replace, and CSV/dictionary import
+- **Artikel anlegen** — groups variants by name/code/color and builds JTL-compatible article rows (Artikelnummer, VaterArtikel, pricing, delivery/replenishment settings), including an EK < VK sanity check
+- **AI classification & naming** — Supabase edge functions (`classify-products`, `restructure-names`, `translate-article-names`) use an LLM to classify products, restructure article names, and translate article names
+- **AI text generation** — in-app calls to the Gemini API for generating and refining product text
+- **Multi-language support** with translation dictionaries for categories, colors, and sizes
 
-There are several ways of editing your application.
+## Tech Stack
 
-**Use Lovable**
+- React + TypeScript, built with Vite
+- shadcn-ui components on top of Tailwind CSS
+- [Supabase](https://supabase.com/) edge functions for backend/AI processing
+- Google Gemini API for AI text generation
+- Docker setup included for containerized deployment
 
-Simply visit the [Lovable Project](https://lovable.dev/projects/REPLACE_WITH_PROJECT_ID) and start prompting.
+## Getting Started
 
-Changes made via Lovable will be committed automatically to this repo.
-
-**Use your preferred IDE**
-
-If you want to work locally using your own IDE, you can clone this repo and push changes. Pushed changes will also be reflected in Lovable.
-
-The only requirement is having Node.js & npm installed - [install with nvm](https://github.com/nvm-sh/nvm#installing-and-updating)
-
-Follow these steps:
-
-```sh
-# Step 1: Clone the repository using the project's Git URL.
-git clone <YOUR_GIT_URL>
-
-# Step 2: Navigate to the project directory.
-cd <YOUR_PROJECT_NAME>
-
-# Step 3: Install the necessary dependencies.
+```bash
+# install dependencies
 npm i
 
-# Step 4: Start the development server with auto-reloading and an instant preview.
+# copy environment variables and fill in the required values (e.g. VITE_GEMINI_API_KEY)
+cp .env.example .env
+
+# start the dev server
 npm run dev
 ```
 
-**Edit a file directly in GitHub**
+### Supabase functions
 
-- Navigate to the desired file(s).
-- Click the "Edit" button (pencil icon) at the top right of the file view.
-- Make your changes and commit the changes.
+The `supabase/functions` directory contains the edge functions used for AI classification, name restructuring, and translation. See `supabase/config.toml` for configuration.
 
-**Use GitHub Codespaces**
+### Docker
 
-- Navigate to the main page of your repository.
-- Click on the "Code" button (green button) near the top right.
-- Select the "Codespaces" tab.
-- Click on "New codespace" to launch a new Codespace environment.
-- Edit files directly within the Codespace and commit and push your changes once you're done.
+A Docker setup is included for running the app in a container; see the project files for details.
 
-## What technologies are used for this project?
+## Project Origin
 
-This project is built with:
+This project was originally scaffolded with [Lovable](https://lovable.dev/) and has since been extended with custom pages and AI-powered backend functions.
 
-- Vite
-- TypeScript
-- React
-- shadcn-ui
-- Tailwind CSS
+## License
 
-## How can I deploy this project?
-
-Simply open [Lovable](https://lovable.dev/projects/REPLACE_WITH_PROJECT_ID) and click on Share -> Publish.
-
-## Can I connect a custom domain to my Lovable project?
-
-Yes, you can!
-
-To connect a domain, navigate to Project > Settings > Domains and click Connect Domain.
-
-Read more here: [Setting up a custom domain](https://docs.lovable.dev/features/custom-domain#custom-domain)
+No license specified yet.
